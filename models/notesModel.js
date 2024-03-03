@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 
 const notesSchema = new mongoose.Schema({
-  title: {
+  Title: {
     type: String,
     required: true,
   },
-  description: {
+  Description: {
     type: String,
     required: true,
   },
-  tag: {
+  Tag: {
     type: String,
     required: true,
   },

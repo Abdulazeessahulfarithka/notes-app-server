@@ -2,22 +2,22 @@ import notesModel from "../models/notesModel.js";
 
 const notes = async (req, res) => {
   try {
-    const { title, description, tag } = req.body;
+    const { Title, Description, Tag } = req.body;
 
-    if (!title) {
-      return res.status(400).send({ message: "title is Required" });
+    if (!Title) {
+      return res.status(400).send({ message: "Title is Required" });
     }
-    if (!description) {
-      return res.status(400).send({ message: "description is Required" });
+    if (!Description) {
+      return res.status(400).send({ message: "Description is Required" });
     }
-    if (!tag) {
-      return res.status(400).send({ message: "tag is Required" });
+    if (!Tag) {
+      return res.status(400).send({ message: "Tag is Required" });
     }
 
     const user = await new notesModel({
-      title,
-      description,
-      tag,
+      Title,
+      Description,
+      Tag,
     }).save();
 
     res.status(201).send({

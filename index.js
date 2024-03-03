@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
 import userRoute from "./routes/userRoute.js ";
+import notesRoute from "./routes/notesRoute.js"
 dotenv.config();
 const app = express();
 /// database connectiom
@@ -23,5 +24,6 @@ app.get("/", (req, res) => {
 
 ///routes
 app.use("/api/user", userRoute);
+app.use("/api/message",notesRoute)
 
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));

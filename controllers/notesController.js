@@ -1,6 +1,6 @@
 import notesModel from "../models/notesModel.js";
 
-const notes = async (req, res) => {
+const createNote = async (req, res) => {
   try {
     const { Title, Description, Tag } = req.body;
 
@@ -14,7 +14,7 @@ const notes = async (req, res) => {
       return res.status(400).send({ message: "Tag is Required" });
     }
 
-    const user = await new notesModel({
+    const note = await new notesModel({
       Title,
       Description,
       Tag,
@@ -22,15 +22,31 @@ const notes = async (req, res) => {
 
     res.status(201).send({
       success: true,
-      message: "User Register Successfully",
-      user,
+      message: "Note created successfully",
+      note,
     });
   } catch (error) {
     console.log(error);
     return res.status(500).send({
-      message: "Error in registration",
+      message: "Error in creating note",
     });
   }
 };
 
-export default notes;
+const getNotes = async (req, res) => {
+  try {
+    const notes = await notesModel.find();
+    res.status(200).send({
+      success: true,
+      message: "Notes fetched successfully",
+      notes,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      message: "Error in fetching notes",
+    });
+  }
+};
+
+export { createNote, getNotes };
